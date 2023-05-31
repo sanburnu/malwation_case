@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+<div class="row d-flex justify-content-center align-items-center sign-in">
+    <div class="col-md-3 text-center">
+        <div class="form-signin w-100 m-auto">
+            <form method="post" action="/api/user/register">
+                <i class='bx bx-shield-plus'></i>
+                <h1 class="h3 mb-3 fw-normal">Register</h1>   
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" name="name" value="{{ form.name }}">
+                    <label for="floatingInput">Name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" name="email" value="{{ form.email }}">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" name="phone" value="{{ form.phone }}">
+                    <label for="floatingInput">Phone</label>
+                </div>
+                <div class="form-floating ">
+                    <select class="form-select" name="role" id="role">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">Already have an account? <a href="/login">Login Here</a></p>
+            </form>
+            {% if message %}
+            <div class="alert alert-primary" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

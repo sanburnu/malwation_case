@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ project.name }}
+{% endblock %}
+
+{% block body %}
+<div class="project-form row d-flex ">
+  <div class="col-10">
+  <form  action="/projects/{{ project.id }}" method="post">
+    <div class="mb-3">
+      <label for="nameinput" class="form-label">Name</label>
+      <input type="text" class="form-control" id="nameinput" name="name" value="{{ project.name }}">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" name="description" rows="4" cols="50" style="display: block;">{{ project.description }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="people" style="display: block;">People</label>
+      <select name="people" id="people">
+        {% for person in allUsers %}
+        <option value="{{ person.id }}">{{ person.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3 form-check">
+      {% if project.active %}
+      <input type="checkbox" class="form-check-input" id="activebutton" name="active" checked>
+      {% else %}
+      <input type="checkbox" class="form-check-input" id="activebutton" name="active">
+      {% endif %}
+      <label class="form-check-label" for="activebutton">Active</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Project</button>
+  </form>
+  <form action="/projects/{{ project.id }}/delete" method="post">
+    <h4>Or</h4>
+    <button type="submit" class="btn btn-danger">Delete Project</button>
+  </form>
+</div>
+</div> 
+{% endblock %}

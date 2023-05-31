@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Projects
+{% endblock %}
+
+{% block body %}
+<form  action="/projects/" method="post">
+  <div class="mb-3">
+    <label for="nameinput" class="form-label">Name</label>
+    <input type="text" class="form-control" id="nameinput" name="name" value="{{ project.name }}">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" name="description" rows="4" cols="50" style="display: block;"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="people" style="display: block;">People</label>
+    <select name="people" id="role">
+      {% for person in people %}
+        <option value="{{ person.id }}">{{ person.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3 form-check">
+      {% if project.active %}
+      <input type="checkbox" class="form-check-input" id="activebutton" name="active" checked>
+      {% else %}
+      <input type="checkbox" class="form-check-input" id="activebutton" name="active">
+      {% endif %}
+    <label class="form-check-label" for="activebutton">Active</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Project</button>
+</form>
+
+<table class="table table-striped text-center align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">People</th>
+        <th scope="col">Active</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for project in projects %}
+      <tr onclick="location.href='/projects/{{ project.id }}'">
+        <td>{{ project.name }}</td>
+        <td>
+          <div class="d-flex flex-column justify-content-center">
+            <ol class="m-0">
+              {% for person in project.people %}
+              <li>{{ person.name }}</li>
+              {% endfor %}
+            </ol>
+          </div>
+        </td>
+        
+        <td>
+          <div class="circle" data-active="{{ project.active }}"></div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>  
+
+{% block script %}
+  <script src="/javascripts/active.js"></script>
+{% endblock %}
+
+{% endblock %}
+

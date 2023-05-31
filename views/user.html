@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ user.name }}
+{% endblock %}
+
+{% block body %} 
+<div class="user-form row d-flex sign-in">
+  <div class="col-10">
+<form  action="/users/{{ user.id }}" method="post">
+    <div class="mb-3">
+      <label for="nameinput" class="form-label">Name</label>
+      <input type="text" class="form-control" id="nameinput" name="name" value="{{ user.name }}">
+    </div>
+    <div class="mb-3">
+      <label for="emailinput" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="emailinput" name="email" value="{{ user.email }}">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="phoneinput" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phoneinput" name="phone"  value="{{ user.phone }}">
+    </div>
+    <div class="mb-3">
+        <label for="role">Role</label>
+        <select name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+    </div>
+    <div class="mb-3 form-check">
+        {% if user.active %}
+        <input type="checkbox" class="form-check-input" id="activebutton" name="active" checked>
+        {% else %}
+        <input type="checkbox" class="form-check-input" id="activebutton" name="active">
+        {% endif %}
+      <label class="form-check-label" for="activebutton">Active</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Update User</button>
+  </form>
+  <form action="/users/{{ user.id }}/delete" method="post">
+    <h4>Or</h4>
+    <button type="submit" class="btn btn-danger">Delete User</button>
+  </form>
+</div>
+</div>
+
+{% endblock %}

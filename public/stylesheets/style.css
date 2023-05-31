@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-full {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.navbar .links {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(31, 172, 66);
+  margin: 0 auto; /* Centers the circle horizontally within the table cell */
+}
+
+.sign-in, .project-form {
+  height: calc(100vh - 90px);
+}
+
+.sign-in i {
+  font-size: 50px;
+}
+
+.sign-in .form-floating {
+  margin-top: 10px;
+}
+
+table {
+  margin-top: 50px;
+  border: 1px solid;
+  border-radius: 30px;
+}
+
+
+.project-form .col-10 form,
+.user-form .col-10 form {
+  margin-top: 20px;
+}

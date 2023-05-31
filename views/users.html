@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %} 
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+      <tr onclick="location.href='/users/{{ user.id }}'">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.role }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
